@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-modules id="moduleCoreId" project-version="1.5.0">
+    <wb-module deploy-name="ShellDevelopment">
+        <wb-resource deploy-path="/" source-path="/components/MyShell/common"/>
+        <wb-resource deploy-path="/" source-path="/apps/MyShellTest/common"/>
+        <wb-resource deploy-path="/" source-path="/components/MyShell/android"/>
+        <wb-resource deploy-path="/" source-path="/components/MyShell/iphone"/>
+        <wb-resource deploy-path="/" source-path="/apps/MyShellTest/android"/>
+        <wb-resource deploy-path="/" source-path="/apps/MyShellTest/iphone"/>
+        <property name="context-root" value="ShellDevelopment"/>
+    </wb-module>
+</project-modules>

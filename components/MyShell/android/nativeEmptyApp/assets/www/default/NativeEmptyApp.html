@@ -1,0 +1,75 @@
+<!--
+    COPYRIGHT LICENSE: This information contains sample code provided in source code form. You may copy, modify, and distribute
+    these sample programs in any form without payment to IBM® for the purposes of developing, using, marketing or distributing
+    application programs conforming to the application programming interface for the operating platform for which the sample code is written.
+    Notwithstanding anything to the contrary, IBM PROVIDES THE SAMPLE SOURCE CODE ON AN "AS IS" BASIS AND IBM DISCLAIMS ALL WARRANTIES,
+    EXPRESS OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, ANY IMPLIED WARRANTIES OR CONDITIONS OF MERCHANTABILITY, SATISFACTORY QUALITY,
+    FITNESS FOR A PARTICULAR PURPOSE, TITLE, AND ANY WARRANTY OR CONDITION OF NON-INFRINGEMENT. IBM SHALL NOT BE LIABLE FOR ANY DIRECT,
+    INDIRECT, INCIDENTAL, SPECIAL OR CONSEQUENTIAL DAMAGES ARISING OUT OF THE USE OR OPERATION OF THE SAMPLE SOURCE CODE.
+    IBM HAS NO OBLIGATION TO PROVIDE MAINTENANCE, SUPPORT, UPDATES, ENHANCEMENTS OR MODIFICATIONS TO THE SAMPLE SOURCE CODE.
+
+
+-->
+<!DOCTYPE html><html>
+    <head>
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<!--Begin fragment from 'head-top.wlfragment'-->
+<!-- This file will be injected at the top part of the <head> element. -->
+<!-- Place here any HTML code, links to CSS files, and links to JavaScript files that should be available for the application. -->
+<!--End fragment from 'head-top.wlfragment'-->
+        <meta charset="utf-8">
+        <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0" name="viewport">
+        <title>NativeEmptyApp</title>
+        <link href="worklight/worklight.css" rel="stylesheet">
+        <link href="images/favicon.png" rel="shortcut icon">
+        <link href="images/apple-touch-icon.png" rel="apple-touch-icon">
+        <link href="css/reset.css" rel="stylesheet">
+        <link href="css/emptyshell.css" rel="stylesheet">
+        <script>
+		// Define WL namespace.
+		var WL = WL ? WL : {};
+		/**
+		 * WLClient configuration variables.
+		 * Values are injected by the deployer that packs the gadget.
+		 */
+		WL.StaticAppProps = {
+   "APP_DISPLAY_NAME": "MyShellTestApp",
+   "APP_ID": "MyShell",
+   "APP_SERVICES_URL": "\/apps\/services\/",
+   "APP_VERSION": "1.0",
+   "ENVIRONMENT": "android",
+   "LOGIN_DISPLAY_TYPE": "embedded",
+   "WORKLIGHT_NATIVE_VERSION": "null",
+   "WORKLIGHT_PLATFORM_VERSION": "6.1.0.00.20131119-1622",
+   "WORKLIGHT_ROOT_URL": "\/apps\/services\/api\/MyShell\/android\/"
+};</script>
+		<script src="worklight/cordova.js"></script>
+		<script src="worklight/wljq.js"></script>
+		<script src="worklight/worklight.js"></script>
+		<script src="worklight/checksum.js"></script>
+<!--Begin fragment from 'head-bottom.wlfragment'-->
+<!-- This file will be injected at the bottom part of the <head> element. -->
+<!-- Place here any HTML code, links to CSS files, and links to JavaScript files that should be available for the application. -->
+<!--End fragment from 'head-bottom.wlfragment'-->
+    </head>
+    <body id="content" onload="WL.Client.init({connectOnStartup : false})" style="display: none">
+<!--Begin fragment from 'body-top.wlfragment'-->
+<!-- This file will be injected at the top part of the <body> element. -->
+<!-- Place here any HTML code, links to CSS files, and links to JavaScript files that should be available for the application. -->
+        <script src="js/myshell.js"></script>
+<!--End fragment from 'body-top.wlfragment'-->
+		This is an empty shell application. To load inside it your inner application, follow these instructions:
+		<ol>
+            <li>Press the Menu button</li>
+            <li>Press the Settings option</li>
+            <li>Enter the details of your Worklight server and app</li>
+        </ol>
+        <script src="js/NativeEmptyApp.js"></script>
+		<script src="js/messages.js"></script>
+		<script src="js/auth.js"></script>
+<!--Begin fragment from 'body-bottom.wlfragment'-->
+<!-- This file will be injected at the bottom part of the <body> element. -->
+<!-- Place here any HTML code, links to CSS files, and links to JavaScript files that should be available for the application. -->
+<!--End fragment from 'body-bottom.wlfragment'-->
+    </body>
+</html>

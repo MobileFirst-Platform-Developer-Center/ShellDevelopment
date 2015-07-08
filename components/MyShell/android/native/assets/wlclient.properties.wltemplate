@@ -1,0 +1,14 @@
+wlServerProtocol = ${wlServerProtocol}
+wlServerHost = ${wlServerHost}
+wlServerPort = ${wlServerPort}
+wlServerContext = ${wlServerContext}
+wlAppId = ${wlAppId}
+wlAppVersion = ${wlAppVersion}
+GcmSenderId = ${GcmSenderId}
+enableSettings = ${isIncludeWorklightSettings}
+testWebResourcesChecksum = ${testWebResourcesChecksum}
+ignoredFileExtensions = ${ignoredFileExtensions}
+webResourcesSize=${webResourcesSize}
+wlUid=${wlUid}
+wlPlatformVersion=${platformVersion}
+wlMainFilePath=${wlMainFilePath}

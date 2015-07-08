@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>protocol</key> 
+	<string>${wlServerProtocol}</string>
+	<key>host</key>
+	<string>${wlServerHost}</string>
+	<key>port</key>
+	<string>${wlServerPort}</string>
+	<key>wlServerContext</key>
+	<string>${wlServerContext}</string>
+	<key>application id</key>
+	<string>${wlAppId}</string>
+	<key>application version</key>
+	<string>${wlAppVersion}</string>
+	<key>environment</key>
+	<string>${environment}</string>
+	<key>buildtime</key>
+	<string></string>
+	<key>authenticitySharedData</key>
+	<string>${authenticitySharedData}</string>
+	<key>testWebResourcesChecksum</key>
+	<string>${testWebResourcesChecksum}</string>
+	<key>ignoredFileExtensions</key>
+	<string>${ignoredFileExtensions}</string>
+	<key>wlMainFile</key>
+	<string>${mainFilePath}</string>
+	<key>wlUid</key>
+	<string>${wlUid}</string>			
+	<key>platformVersion</key>
+	<string>${platformVersion}</string>
+</dict>
+</plist>

@@ -1,0 +1,5 @@
+<!-- This file will be injected at the top part of the <body> element. -->
+<!-- Place here any HTML code, links to CSS files, and links to JavaScript files that should be available for the application. -->
+
+<h1>This is a header that will be visible in all inner applications that use this Shell</h1>
+<script src="js/myshell.js"></script>
