@@ -1,3 +1,3 @@
 dependencies: \
-  /opt/MAPWorklightWorkspace/worklight-ios/framework-xcode-project/CordovaLib/Classes/NSMutableArray+QueueAdditions.m \
-  /opt/MAPWorklightWorkspace/worklight-ios/framework-xcode-project/CordovaLib/Classes/NSMutableArray+QueueAdditions.h
+  /Users/carlosmarx/Workspaces/main-stream/worklight-ios/framework-xcode-project/CordovaLib/Classes/NSMutableArray+QueueAdditions.m \
+  /Users/carlosmarx/Workspaces/main-stream/worklight-ios/framework-xcode-project/CordovaLib/Classes/NSMutableArray+QueueAdditions.h

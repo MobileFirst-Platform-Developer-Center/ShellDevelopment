@@ -11,3 +11,6 @@
 split.density=false
 # Project target.
 target=android-${latestRecommendedTarget}
+
+# Uncomment the line below to enable Android Proguard
+#proguard.config=proguard-project.txt

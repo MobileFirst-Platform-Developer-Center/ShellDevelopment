@@ -1,3 +1,3 @@
 dependencies: \
-  /opt/MAPWorklightWorkspace/worklight-ios/framework-xcode-project/CordovaLib/plugin/CDVReachability.m \
-  /opt/MAPWorklightWorkspace/worklight-ios/framework-xcode-project/CordovaLib/plugin/CDVReachability.h
+  /Users/carlosmarx/Workspaces/main-stream/worklight-ios/framework-xcode-project/CordovaLib/Classes/CDVReachability.m \
+  /Users/carlosmarx/Workspaces/main-stream/worklight-ios/framework-xcode-project/CordovaLib/Classes/CDVReachability.h

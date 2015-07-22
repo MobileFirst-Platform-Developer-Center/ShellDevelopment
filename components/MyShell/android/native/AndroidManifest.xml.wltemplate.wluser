@@ -4,7 +4,7 @@
         android:versionCode="1"
         android:versionName="${versionName}">    
     
-	<uses-sdk android:minSdkVersion="9"
+	<uses-sdk android:minSdkVersion="10"
 			  android:targetSdkVersion="${latestRecommendedTarget}" />
 
     <supports-screens
@@ -27,13 +27,14 @@
 	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     
     <application 
-        android:label="@string/app_name" 
-        android:debuggable="true"
+        android:label="@string/app_name"
         android:icon="@drawable/icon" >
         <activity android:name=".${appName}"
                   android:label="@string/app_name" 
                   android:configChanges="orientation|keyboardHidden"
-                  android:launchMode="singleTask">
+                  android:launchMode="singleTask"
+                  android:theme="@android:style/Theme.Translucent.NoTitleBar"
+                  android:screenOrientation="sensor">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -46,9 +47,12 @@
         
         <!-- Preference Activity  -->
         <activity
-        	android:name="com.worklight.common.WLPreferences"
+        	android:name="com.worklight.common.WLSettingActivity"
         	android:label="Worklight Settings">
 		</activity>
+		<!-- UI Activity for displaying native dialogs  -->
+		<activity android:name="com.worklight.wlclient.ui.UIActivity"/>
+		
         <!-- Push service  -->
         <!-- In order to use the c2dm library, an application must declare a class with the name C2DMReceiver, in its own package, extending com.google.android.c2dm.C2DMBaseReceiver 
 			It must also include this section in the manifest, replacing "com.google.android.apps.chrometophone" with its package name. -->
@@ -56,7 +60,7 @@
 		<service android:name=".ForegroundService" />
 
 		<!-- Only google service can send data messages for the app. If permission is not set - any other app can generate it -->
-		<receiver android:name="com.google.android.gcm.GCMBroadcastReceiver" android:permission="com.google.android.c2dm.permission.SEND">
+		<receiver android:name="com.worklight.androidgap.push.WLBroadcastReceiver" android:permission="com.google.android.c2dm.permission.SEND">
 			<!-- Receive the actual message -->
 			<intent-filter>
 				<action android:name="com.google.android.c2dm.intent.RECEIVE" />

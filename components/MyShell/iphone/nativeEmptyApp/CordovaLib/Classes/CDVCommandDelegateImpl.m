@@ -1,17 +1,4 @@
 /*
-*
-    COPYRIGHT LICENSE: This information contains sample code provided in source code form. You may copy, modify, and distribute
-    these sample programs in any form without payment to IBM® for the purposes of developing, using, marketing or distributing
-    application programs conforming to the application programming interface for the operating platform for which the sample code is written.
-    Notwithstanding anything to the contrary, IBM PROVIDES THE SAMPLE SOURCE CODE ON AN "AS IS" BASIS AND IBM DISCLAIMS ALL WARRANTIES,
-    EXPRESS OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, ANY IMPLIED WARRANTIES OR CONDITIONS OF MERCHANTABILITY, SATISFACTORY QUALITY,
-    FITNESS FOR A PARTICULAR PURPOSE, TITLE, AND ANY WARRANTY OR CONDITION OF NON-INFRINGEMENT. IBM SHALL NOT BE LIABLE FOR ANY DIRECT,
-    INDIRECT, INCIDENTAL, SPECIAL OR CONSEQUENTIAL DAMAGES ARISING OUT OF THE USE OR OPERATION OF THE SAMPLE SOURCE CODE.
-    IBM HAS NO OBLIGATION TO PROVIDE MAINTENANCE, SUPPORT, UPDATES, ENHANCEMENTS OR MODIFICATIONS TO THE SAMPLE SOURCE CODE.
-
-*/
-
-/*
  Licensed to the Apache Software Foundation (ASF) under one
  or more contributor license agreements.  See the NOTICE file
  distributed with this work for additional information
@@ -35,9 +22,7 @@
 #import "CDVCommandQueue.h"
 #import "CDVPluginResult.h"
 #import "CDVViewController.h"
-// Worklight change start
-#define WORKLIGHT_SCHEME_PREFIX			@"worklight://"
-// Worklight change end
+
 @implementation CDVCommandDelegateImpl
 
 - (id)initWithViewController:(CDVViewController*)viewController
@@ -46,17 +31,20 @@
     if (self != nil) {
         _viewController = viewController;
         _commandQueue = _viewController.commandQueue;
+        
+        NSError* err = nil;
+        _callbackIdPattern = [NSRegularExpression regularExpressionWithPattern:@"[^A-Za-z0-9._-]" options:0 error:&err];
+        if (err != nil) {
+            // Couldn't initialize Regex
+            NSLog(@"Error: Couldn't initialize regex");
+            _callbackIdPattern = nil;
+        }
     }
     return self;
 }
 
 - (NSString*)pathForResource:(NSString*)resourcepath
 {
- 	// Worklight change start
-    if ([resourcepath hasPrefix:WORKLIGHT_SCHEME_PREFIX]) {
-        return [resourcepath substringFromIndex:[WORKLIGHT_SCHEME_PREFIX length]];
-    }
-    // Worklight change end
     NSBundle* mainBundle = [NSBundle mainBundle];
     NSMutableArray* directoryParts = [NSMutableArray arrayWithArray:[resourcepath componentsSeparatedByString:@"/"]];
     NSString* filename = [directoryParts lastObject];
@@ -73,6 +61,13 @@
     return [mainBundle pathForResource:filename ofType:@"" inDirectory:directoryStr];
 }
 
+- (void)flushCommandQueueWithDelayedJs
+{
+    _delayResponses = YES;
+    [_commandQueue executePending];
+    _delayResponses = NO;
+}
+
 - (void)evalJsHelper2:(NSString*)js
 {
     CDV_EXEC_LOG(@"Exec: evalling: %@", [js substringToIndex:MIN([js length], 160)]);
@@ -81,23 +76,44 @@
         CDV_EXEC_LOG(@"Exec: Retrieved new exec messages by chaining.");
     }
 
-    [_commandQueue enqueCommandBatch:commandsJSON];
+    [_commandQueue enqueueCommandBatch:commandsJSON];
+    [_commandQueue executePending];
 }
 
 - (void)evalJsHelper:(NSString*)js
 {
     // Cycle the run-loop before executing the JS.
-    // This works around a bug where sometimes alerts() within callbacks can cause
-    // dead-lock.
-    // If the commandQueue is currently executing, then we know that it is safe to
-    // execute the callback immediately.
-    // Using    (dispatch_get_main_queue()) does *not* fix deadlocks for some reaon,
+    // For _delayResponses -
+    //    This ensures that we don't eval JS during the middle of an existing JS
+    //    function (possible since UIWebViewDelegate callbacks can be synchronous).
+    // For !isMainThread -
+    //    It's a hard error to eval on the non-UI thread.
+    // For !_commandQueue.currentlyExecuting -
+    //     This works around a bug where sometimes alerts() within callbacks can cause
+    //     dead-lock.
+    //     If the commandQueue is currently executing, then we know that it is safe to
+    //     execute the callback immediately.
+    // Using    (dispatch_get_main_queue()) does *not* fix deadlocks for some reason,
     // but performSelectorOnMainThread: does.
-    if (![NSThread isMainThread] || !_commandQueue.currentlyExecuting) {
+    if (_delayResponses || ![NSThread isMainThread] || !_commandQueue.currentlyExecuting) {
         [self performSelectorOnMainThread:@selector(evalJsHelper2:) withObject:js waitUntilDone:NO];
     } else {
         [self evalJsHelper2:js];
     }
+}
+
+- (BOOL)isValidCallbackId:(NSString*)callbackId
+{
+    
+    if (callbackId == nil || _callbackIdPattern == nil) {
+        return NO;
+    }
+
+    // Disallow if too long or if any invalid characters were found.
+    if (([callbackId length] > 100) || [_callbackIdPattern firstMatchInString:callbackId options:0 range:NSMakeRange(0, [callbackId length])]) {
+        return NO;
+    }
+    return YES;
 }
 
 - (void)sendPluginResult:(CDVPluginResult*)result callbackId:(NSString*)callbackId
@@ -105,6 +121,11 @@
     CDV_EXEC_LOG(@"Exec(%@): Sending result. Status=%@", callbackId, result.status);
     // This occurs when there is are no win/fail callbacks for the call.
     if ([@"INVALID" isEqualToString : callbackId]) {
+        return;
+    }
+    // This occurs when the callback id is malformed.
+    if (![self isValidCallbackId:callbackId]) {
+        NSLog(@"Invalid callback id received by sendPluginResult");
         return;
     }
     int status = [result.status intValue];
@@ -131,11 +152,6 @@
     }
 }
 
-- (BOOL)execute:(CDVInvokedUrlCommand*)command
-{
-    return [_commandQueue execute:command];
-}
-
 - (id)getCommandInstance:(NSString*)pluginName
 {
     return [_viewController getCommandInstance:pluginName];
@@ -154,7 +170,7 @@
 - (BOOL)URLIsWhitelisted:(NSURL*)url
 {
     return ![_viewController.whitelist schemeIsAllowed:[url scheme]] ||
-           [_viewController.whitelist URLIsAllowed:url];
+           [_viewController.whitelist URLIsAllowed:url logFailure:NO];
 }
 
 - (NSDictionary*)settings

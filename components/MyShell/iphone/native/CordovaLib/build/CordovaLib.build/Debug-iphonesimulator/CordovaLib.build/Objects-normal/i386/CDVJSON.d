@@ -1,3 +1,0 @@
-dependencies: \
-  /opt/MAPWorklightWorkspace/worklight-ios/framework-xcode-project/CordovaLib/Classes/CDVJSON.m \
-  /opt/MAPWorklightWorkspace/worklight-ios/framework-xcode-project/CordovaLib/Classes/CDVJSON.h

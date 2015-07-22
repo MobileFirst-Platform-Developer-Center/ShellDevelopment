@@ -1,13 +1,10 @@
 dependencies: \
-  /opt/MAPWorklightWorkspace/worklight-ios/framework-xcode-project/CordovaLib/plugin/CDVCamera.m \
-  /opt/MAPWorklightWorkspace/worklight-ios/framework-xcode-project/CordovaLib/plugin/CDVCamera.h \
-  /opt/MAPWorklightWorkspace/worklight-ios/framework-xcode-project/CordovaLib/Classes/CDVPlugin.h \
-  /opt/MAPWorklightWorkspace/worklight-ios/framework-xcode-project/CordovaLib/Classes/CDVPluginResult.h \
-  /opt/MAPWorklightWorkspace/worklight-ios/framework-xcode-project/CordovaLib/Classes/NSMutableArray+QueueAdditions.h \
-  /opt/MAPWorklightWorkspace/worklight-ios/framework-xcode-project/CordovaLib/Classes/CDVCommandDelegate.h \
-  /opt/MAPWorklightWorkspace/worklight-ios/framework-xcode-project/CordovaLib/Classes/CDVAvailability.h \
-  /opt/MAPWorklightWorkspace/worklight-ios/framework-xcode-project/CordovaLib/Classes/CDVInvokedUrlCommand.h \
-  /opt/MAPWorklightWorkspace/worklight-ios/framework-xcode-project/CordovaLib/plugin/CDVJpegHeaderWriter.h \
-  /opt/MAPWorklightWorkspace/worklight-ios/framework-xcode-project/CordovaLib/Classes/NSArray+Comparisons.h \
-  /opt/MAPWorklightWorkspace/worklight-ios/framework-xcode-project/CordovaLib/Classes/NSData+Base64.h \
-  /opt/MAPWorklightWorkspace/worklight-ios/framework-xcode-project/CordovaLib/Classes/NSDictionary+Extensions.h
+  /Users/carlosmarx/Workspaces/main-stream/worklight-ios/framework-xcode-project/CordovaLib/Classes/CDVCamera.m \
+  /Users/carlosmarx/Workspaces/main-stream/worklight-ios/framework-xcode-project/CordovaLib/Classes/CDVCamera.h \
+  /Users/carlosmarx/Workspaces/main-stream/worklight-ios/framework-xcode-project/CordovaLib/Classes/CDVPlugin.h \
+  /Users/carlosmarx/Workspaces/main-stream/worklight-ios/framework-xcode-project/CordovaLib/Classes/CDVPluginResult.h \
+  /Users/carlosmarx/Workspaces/main-stream/worklight-ios/framework-xcode-project/CordovaLib/Classes/NSMutableArray+QueueAdditions.h \
+  /Users/carlosmarx/Workspaces/main-stream/worklight-ios/framework-xcode-project/CordovaLib/Classes/CDVCommandDelegate.h \
+  /Users/carlosmarx/Workspaces/main-stream/worklight-ios/framework-xcode-project/CordovaLib/Classes/CDVInvokedUrlCommand.h \
+  /Users/carlosmarx/Workspaces/main-stream/worklight-ios/framework-xcode-project/CordovaLib/Classes/NSData+Base64.h \
+  /Users/carlosmarx/Workspaces/main-stream/worklight-ios/framework-xcode-project/CordovaLib/Classes/NSDictionary+Extensions.h

@@ -6,9 +6,9 @@
  to you under the Apache License, Version 2.0 (the
  "License"); you may not use this file except in compliance
  with the License.  You may obtain a copy of the License at
-
+ 
  http://www.apache.org/licenses/LICENSE-2.0
-
+ 
  Unless required by applicable law or agreed to in writing,
  software distributed under the License is distributed on an
  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -23,27 +23,24 @@
 #import "NSMutableArray+QueueAdditions.h"
 #import "CDVCommandDelegate.h"
 
-extern NSString* const CDVPageDidLoadNotification;
-extern NSString* const CDVPluginHandleOpenURLNotification;
-extern NSString* const CDVPluginResetNotification;
-extern NSString* const CDVLocalNotification;
+#define CDVPluginHandleOpenURLNotification	@"CDVPluginHandleOpenURLNotification"
 
-@interface CDVPlugin : NSObject {}
+@interface CDVPlugin : NSObject {
+}
 
-@property (nonatomic, weak) UIWebView* webView;
-@property (nonatomic, weak) UIViewController* viewController;
-@property (nonatomic, weak) id <CDVCommandDelegate> commandDelegate;
+@property (nonatomic, retain) UIWebView* webView;
+@property (nonatomic, retain) NSDictionary* settings;
+@property (nonatomic, retain) UIViewController* viewController;
+@property (nonatomic, retain) id<CDVCommandDelegate> commandDelegate;
 
 @property (readonly, assign) BOOL hasPendingOperation;
 
-- (CDVPlugin*)initWithWebView:(UIWebView*)theWebView;
-- (void)pluginInitialize;
+- (CDVPlugin*) initWithWebView:(UIWebView*)theWebView settings:(NSDictionary*)classSettings;
+- (CDVPlugin*) initWithWebView:(UIWebView*)theWebView;
 
-- (void)handleOpenURL:(NSNotification*)notification;
-- (void)onAppTerminate;
-- (void)onMemoryWarning;
-- (void)onReset;
-- (void)dispose;
+- (void) handleOpenURL:(NSNotification*)notification;
+- (void) onAppTerminate;
+- (void) onMemoryWarning;
 
 /*
  // see initWithWebView implementation
@@ -51,14 +48,12 @@ extern NSString* const CDVLocalNotification;
  - (void) onResume {}
  - (void) onOrientationWillChange {}
  - (void) onOrientationDidChange {}
- - (void)didReceiveLocalNotification:(NSNotification *)notification;
  */
 
-- (id)appDelegate;
+- (id) appDelegate;
 
-// TODO(agrieve): Deprecate these in favour of using CDVCommandDelegate directly.
-- (NSString*)writeJavascript:(NSString*)javascript;
-- (NSString*)success:(CDVPluginResult*)pluginResult callbackId:(NSString*)callbackId;
-- (NSString*)error:(CDVPluginResult*)pluginResult callbackId:(NSString*)callbackId;
+- (NSString*) writeJavascript:(NSString*)javascript;
+- (NSString*) success:(CDVPluginResult*)pluginResult callbackId:(NSString*)callbackId;
+- (NSString*) error:(CDVPluginResult*)pluginResult callbackId:(NSString*)callbackId;
 
 @end

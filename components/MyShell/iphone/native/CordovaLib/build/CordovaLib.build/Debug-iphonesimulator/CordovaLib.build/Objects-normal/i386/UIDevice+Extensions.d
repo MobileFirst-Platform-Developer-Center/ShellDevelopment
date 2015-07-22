@@ -1,3 +1,3 @@
 dependencies: \
-  /opt/MAPWorklightWorkspace/worklight-ios/framework-xcode-project/CordovaLib/Classes/UIDevice+Extensions.m \
-  /opt/MAPWorklightWorkspace/worklight-ios/framework-xcode-project/CordovaLib/Classes/UIDevice+Extensions.h
+  /Users/carlosmarx/Workspaces/main-stream/worklight-ios/framework-xcode-project/CordovaLib/Classes/UIDevice+Extensions.m \
+  /Users/carlosmarx/Workspaces/main-stream/worklight-ios/framework-xcode-project/CordovaLib/Classes/UIDevice+Extensions.h

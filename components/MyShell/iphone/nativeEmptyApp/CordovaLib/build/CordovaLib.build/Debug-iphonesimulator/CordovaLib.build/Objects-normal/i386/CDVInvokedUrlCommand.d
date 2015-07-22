@@ -1,5 +1,4 @@
 dependencies: \
-  /opt/MAPWorklightWorkspace/worklight-ios/framework-xcode-project/CordovaLib/Classes/CDVInvokedUrlCommand.m \
-  /opt/MAPWorklightWorkspace/worklight-ios/framework-xcode-project/CordovaLib/Classes/CDVInvokedUrlCommand.h \
-  /opt/MAPWorklightWorkspace/worklight-ios/framework-xcode-project/CordovaLib/Classes/CDVJSON.h \
-  /opt/MAPWorklightWorkspace/worklight-ios/framework-xcode-project/CordovaLib/Classes/NSData+Base64.h
+  /Users/carlosmarx/Workspaces/main-stream/worklight-ios/framework-xcode-project/CordovaLib/Classes/CDVInvokedUrlCommand.m \
+  /Users/carlosmarx/Workspaces/main-stream/worklight-ios/framework-xcode-project/CordovaLib/Classes/CDVInvokedUrlCommand.h \
+  /Users/carlosmarx/Workspaces/main-stream/worklight-ios/framework-xcode-project/CordovaLib/Classes/JSON/JSONKit.h

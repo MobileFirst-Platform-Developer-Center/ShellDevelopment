@@ -1,16 +1,10 @@
 
 /* JavaScript content from worklight/cordova_plugins.js in JS Resources */
 /*
-*
-    COPYRIGHT LICENSE: This information contains sample code provided in source code form. You may copy, modify, and distribute
-    these sample programs in any form without payment to IBM® for the purposes of developing, using, marketing or distributing
-    application programs conforming to the application programming interface for the operating platform for which the sample code is written.
-    Notwithstanding anything to the contrary, IBM PROVIDES THE SAMPLE SOURCE CODE ON AN "AS IS" BASIS AND IBM DISCLAIMS ALL WARRANTIES,
-    EXPRESS OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, ANY IMPLIED WARRANTIES OR CONDITIONS OF MERCHANTABILITY, SATISFACTORY QUALITY,
-    FITNESS FOR A PARTICULAR PURPOSE, TITLE, AND ANY WARRANTY OR CONDITION OF NON-INFRINGEMENT. IBM SHALL NOT BE LIABLE FOR ANY DIRECT,
-    INDIRECT, INCIDENTAL, SPECIAL OR CONSEQUENTIAL DAMAGES ARISING OUT OF THE USE OR OPERATION OF THE SAMPLE SOURCE CODE.
-    IBM HAS NO OBLIGATION TO PROVIDE MAINTENANCE, SUPPORT, UPDATES, ENHANCEMENTS OR MODIFICATIONS TO THE SAMPLE SOURCE CODE.
-
+* Licensed Materials - Property of IBM
+* 5725-I43 (C) Copyright IBM Corp. 2006, 2013. All Rights Reserved.
+* US Government Users Restricted Rights - Use, duplication or
+* disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
 */
 cordova.define('cordova/plugin_list', function(require, exports, module) {
 module.exports = [
@@ -83,6 +77,13 @@ module.exports = [
         "clobbers": [
             "ContactField"
         ]
+    },
+    {
+        "file": "plugins/org.apache.cordova.contacts/www/ContactFieldType.js",
+        "id": "org.apache.cordova.contacts.ContactFieldType",
+        "merges": [
+                   ""
+         ]
     },
     {
         "file": "plugins/org.apache.cordova.contacts/www/ContactFindOptions.js",
@@ -279,9 +280,33 @@ module.exports = [
     {
         "file": "plugins/org.apache.cordova.file/www/resolveLocalFileSystemURI.js",
         "id": "org.apache.cordova.file.resolveLocalFileSystemURI",
-        "clobbers": [
-            "window.resolveLocalFileSystemURI"
+        "merges": [
+            "window"
         ]
+    },
+    {
+        "file": "plugins/org.apache.cordova.file/www/android/FileSystem.js",
+        "id": "org.apache.cordova.file.androidFileSystem",
+        "merges": [
+            "FileSystem"
+        ]
+    },
+    {
+        "file": "plugins/org.apache.cordova.file/www/fileSystemPaths.js",
+        "id": "org.apache.cordova.file.fileSystemPaths",
+        "merges": [
+            "cordova"
+        ],
+        "runs": true
+    },
+    {
+        "file": "plugins/org.apache.cordova.file/www/fileSystems-roots.js",
+        "id": "org.apache.cordova.file.fileSystems-roots",
+        "runs": true
+    },
+    {
+        "file": "plugins/org.apache.cordova.file/www/fileSystems.js",
+        "id": "org.apache.cordova.file.fileSystems"
     },
     {
         "file": "plugins/org.apache.cordova.file-transfer/www/FileTransferError.js",
@@ -295,34 +320,6 @@ module.exports = [
         "id": "org.apache.cordova.file-transfer.FileTransfer",
         "clobbers": [
             "window.FileTransfer"
-        ]
-    },
-    {
-        "file": "plugins/org.apache.cordova.geolocation/www/Coordinates.js",
-        "id": "org.apache.cordova.geolocation.Coordinates",
-        "clobbers": [
-            "Coordinates"
-        ]
-    },
-    {
-        "file": "plugins/org.apache.cordova.geolocation/www/PositionError.js",
-        "id": "org.apache.cordova.geolocation.PositionError",
-        "clobbers": [
-            "PositionError"
-        ]
-    },
-    {
-        "file": "plugins/org.apache.cordova.geolocation/www/Position.js",
-        "id": "org.apache.cordova.geolocation.Position",
-        "clobbers": [
-            "Position"
-        ]
-    },
-    {
-        "file": "plugins/org.apache.cordova.geolocation/www/geolocation.js",
-        "id": "org.apache.cordova.geolocation.geolocation",
-        "clobbers": [
-            "navigator.geolocation"
         ]
     },
     {
@@ -340,8 +337,8 @@ module.exports = [
         ]
     },
     {
-        "file": "plugins/org.apache.cordova.inappbrowser/www/InAppBrowser.js",
-        "id": "org.apache.cordova.inappbrowser.InAppBrowser",
+        "file": "plugins/org.apache.cordova.inappbrowser/www/inappbrowser.js",
+        "id": "org.apache.cordova.inappbrowser.inappbrowser",
         "clobbers": [
             "window.open"
         ]
@@ -432,10 +429,18 @@ module.exports = [
         ]
     },
     {
+        "file": "plugins/org.apache.cordova.statusbar/www/statusbar.js",
+        "id": "org.apache.cordova.statusbar.statusbar",
+        "clobbers": [
+            "window.StatusBar"
+        ]
+    },
+    {
         "file": "plugins/org.apache.cordova.vibration/www/vibration.js",
         "id": "org.apache.cordova.vibration.notification",
         "merges": [
-            "navigator.notification"
+            "navigator.notification",
+            "navigator"
         ]
     }
 ]

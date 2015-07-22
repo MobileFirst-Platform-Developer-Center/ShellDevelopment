@@ -31,6 +31,9 @@ public final class R {
         public static final int summaryWLServerUrl=0x7f050002;
         public static final int titleInvalidWLServerUrl=0x7f050006;
         public static final int titleWLServerUrl=0x7f050003;
+        public static final int worklightInitInternalError=0x7f050008;
+        public static final int worklightInitNotEnoughSpace=0x7f050009;
+        
     }
     public static final class xml {
         public static final int plugins=0x7f040000;

@@ -6,9 +6,9 @@
  to you under the Apache License, Version 2.0 (the
  "License"); you may not use this file except in compliance
  with the License.  You may obtain a copy of the License at
-
+ 
  http://www.apache.org/licenses/LICENSE-2.0
-
+ 
  Unless required by applicable law or agreed to in writing,
  software distributed under the License is distributed on an
  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -17,19 +17,19 @@
  under the License.
  */
 
+
 #import <Foundation/Foundation.h>
-#import <Cordova/CDVPlugin.h>
+#import "CDVPlugin.h"
 
 enum CDVFileTransferError {
-    FILE_NOT_FOUND_ERR = 1,
+	FILE_NOT_FOUND_ERR = 1,
     INVALID_URL_ERR = 2,
-    CONNECTION_ERR = 3,
-    CONNECTION_ABORTED = 4
+    CONNECTION_ERR = 3
 };
 typedef int CDVFileTransferError;
 
 enum CDVFileTransferDirection {
-    CDV_TRANSFER_UPLOAD = 1,
+	CDV_TRANSFER_UPLOAD = 1,
     CDV_TRANSFER_DOWNLOAD = 2,
 };
 typedef int CDVFileTransferDirection;
@@ -37,46 +37,36 @@ typedef int CDVFileTransferDirection;
 // Magic value within the options dict used to set a cookie.
 extern NSString* const kOptionsKeyCookie;
 
-@interface CDVFileTransfer : CDVPlugin {}
+@interface CDVFileTransfer : CDVPlugin {
+    
+}
 
-- (void)upload:(CDVInvokedUrlCommand*)command;
-- (void)download:(CDVInvokedUrlCommand*)command;
-- (NSString*)escapePathComponentForUrlString:(NSString*)urlString;
+- (void) upload:(NSArray*)arguments withDict:(NSDictionary*)options;
+- (void) download:(NSArray*)arguments withDict:(NSDictionary*)options;
+- (NSString*) escapePathComponentForUrlString:(NSString*)urlString;
 
 // Visible for testing.
-- (NSURLRequest*)requestForUploadCommand:(CDVInvokedUrlCommand*)command fileData:(NSData*)fileData;
-- (NSMutableDictionary*)createFileTransferError:(int)code AndSource:(NSString*)source AndTarget:(NSString*)target;
+- (NSURLRequest*) requestForUpload:(NSArray*)arguments withDict:(NSDictionary*)options fileData:(NSData*)fileData;
+-(NSMutableDictionary*) createFileTransferError:(int)code AndSource:(NSString*)source AndTarget:(NSString*)target;
 
-- (NSMutableDictionary*)createFileTransferError:(int)code
-                                      AndSource:(NSString*)source
-                                      AndTarget:(NSString*)target
-                                  AndHttpStatus:(int)httpStatus
-                                        AndBody:(NSString*)body;
-@property (readonly) NSMutableDictionary* activeTransfers;
-@property (nonatomic, assign) UIBackgroundTaskIdentifier backgroundTaskID;
+-(NSMutableDictionary*) createFileTransferError:(int)code 
+                                  AndSource:(NSString*)source 
+                                  AndTarget:(NSString*)target 
+                                  AndHttpStatus:(int)httpStatus;
 @end
 
-@class CDVFileTransferEntityLengthRequest;
 
-@interface CDVFileTransferDelegate : NSObject {}
+@interface CDVFileTransferDelegate : NSObject {
+}
 
-- (void)updateBytesExpected:(long long)newBytesExpected;
-- (void)cancelTransfer:(NSURLConnection*)connection;
-
-@property (strong) NSMutableData* responseData; // atomic
-@property (nonatomic, strong) CDVFileTransfer* command;
+@property (retain) NSMutableData* responseData; // atomic
+@property (nonatomic, retain) CDVFileTransfer* command;
 @property (nonatomic, assign) CDVFileTransferDirection direction;
-@property (nonatomic, strong) NSURLConnection* connection;
 @property (nonatomic, copy) NSString* callbackId;
-@property (nonatomic, copy) NSString* objectId;
 @property (nonatomic, copy) NSString* source;
 @property (nonatomic, copy) NSString* target;
-@property (nonatomic, copy) NSString* mimeType;
 @property (assign) int responseCode; // atomic
-@property (nonatomic, assign) long long bytesTransfered;
-@property (nonatomic, assign) long long bytesExpected;
-@property (nonatomic, assign) BOOL trustAllHosts;
-@property (strong) NSFileHandle* targetFileHandle;
-@property (nonatomic, strong) CDVFileTransferEntityLengthRequest* entityLengthRequest;
+@property (nonatomic, assign) NSInteger bytesWritten;
+
 
 @end;

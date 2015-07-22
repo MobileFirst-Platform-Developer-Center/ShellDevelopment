@@ -12,23 +12,29 @@
 			<key>Type</key>
 			<string>PSGroupSpecifier</string>
 			<key>Title</key>
-			<string>Change server connectivity settings</string>
+			<string>Server connectivity settings</string>
 		</dict>
 		<dict>
 			<key>Type</key>
 			<string>PSToggleSwitchSpecifier</string>
 			<key>Title</key>
-			<string>Use custom URL</string>
+			<string>Customize</string>
 			<key>Key</key>
 			<string>useCustomURL</string>
 			<key>DefaultValue</key>
 			<string>false</string>
 		</dict>
 		<dict>
+			<key>key</key>
+			<string>CustomGroup</string>
 			<key>Type</key>
-			<string>PSTextFieldSpecifier</string>
+			<string>PSGroupSpecifier</string>
 			<key>Title</key>
 			<string>Custom server URL</string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSTextFieldSpecifier</string>
 			<key>Key</key>
 			<string>serverURL</string>
 			<key>DefaultValue</key>
@@ -36,6 +42,14 @@
 			<key>KeyboardType</key>
 			<string>Alphabet</string>
 		</dict>
+		<dict>
+			<key>key</key>
+			<string>ApplicationGroup</string>
+			<key>Type</key>
+			<string>PSGroupSpecifier</string>
+			<key>Title</key>
+			<string>Application Settings</string>
+		</dict>	
 		<dict>
 			<key>Type</key>
 			<string>PSTextFieldSpecifier</string>
@@ -52,7 +66,7 @@
 			<key>Title</key>
 			<string>App Version</string>
 			<key>Key</key>
-			<string>tempAppVersionPref</string>			
+			<string>tempAppVersionPref</string>
 			<key>KeyboardType</key>
 			<string>NumbersAndPunctuation</string>
 		</dict>

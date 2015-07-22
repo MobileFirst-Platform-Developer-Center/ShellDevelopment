@@ -30,5 +30,13 @@
 	<string>${wlUid}</string>			
 	<key>platformVersion</key>
 	<string>${platformVersion}</string>
+	<key>wlAppFamily</key>
+	<string>${wlAppFamily}</string>
+	<key>wlShareCookies</key>
+	<string>${wlShareCookies}</string>
+	<key>wlShareUserCert</key>
+	<string>${wlShareUserCert}</string>
+	<key>wlSecureDirectUpdatePublicKey</key>
+	<string>${wlSecureDirectUpdatePublicKey}</string>
 </dict>
 </plist>

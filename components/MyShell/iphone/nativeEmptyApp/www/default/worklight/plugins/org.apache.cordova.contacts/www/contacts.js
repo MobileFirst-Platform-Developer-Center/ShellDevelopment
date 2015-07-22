@@ -25,13 +25,16 @@ var argscheck = require('cordova/argscheck'),
     exec = require('cordova/exec'),
     ContactError = require('./ContactError'),
     utils = require('cordova/utils'),
-    Contact = require('./Contact');
+    Contact = require('./Contact'),
+    fieldType = require('./ContactFieldType');
+    
 
 /**
 * Represents a group of Contacts.
 * @constructor
 */
 var contacts = {
+    fieldType: fieldType,
     /**
      * Returns an array of Contacts matching the search criteria.
      * @param fields that should be searched
@@ -45,6 +48,8 @@ var contacts = {
         if (!fields.length) {
             errorCB && errorCB(new ContactError(ContactError.INVALID_ARGUMENT_ERROR));
         } else {
+            // missing 'options' param means return all contacts
+            options = options || {filter: '', multiple: true}
             var win = function(result) {
                 var cs = [];
                 for (var i = 0, l = result.length; i < l; i++) {
@@ -54,6 +59,23 @@ var contacts = {
             };
             exec(win, errorCB, "Contacts", "search", [fields, options]);
         }
+    },
+    
+    /**
+     * This function picks contact from phone using contact picker UI
+     * @returns new Contact object
+     */
+    pickContact: function (successCB, errorCB) {
+
+        argscheck.checkArgs('fF', 'contacts.pick', arguments);
+
+        var win = function (result) {
+            // if Contacts.pickContact return instance of Contact object
+            // don't create new Contact object, use current
+            var contact = result instanceof Contact ? result : contacts.create(result);
+            successCB(contact);
+        };
+        exec(win, errorCB, "Contacts", "pickContact", []);
     },
 
     /**

@@ -2,16 +2,10 @@
 /* JavaScript content from worklight/wljq.js in JS Resources */
 /**!
 * @license
-*
-    COPYRIGHT LICENSE: This information contains sample code provided in source code form. You may copy, modify, and distribute
-    these sample programs in any form without payment to IBM® for the purposes of developing, using, marketing or distributing
-    application programs conforming to the application programming interface for the operating platform for which the sample code is written.
-    Notwithstanding anything to the contrary, IBM PROVIDES THE SAMPLE SOURCE CODE ON AN "AS IS" BASIS AND IBM DISCLAIMS ALL WARRANTIES,
-    EXPRESS OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, ANY IMPLIED WARRANTIES OR CONDITIONS OF MERCHANTABILITY, SATISFACTORY QUALITY,
-    FITNESS FOR A PARTICULAR PURPOSE, TITLE, AND ANY WARRANTY OR CONDITION OF NON-INFRINGEMENT. IBM SHALL NOT BE LIABLE FOR ANY DIRECT,
-    INDIRECT, INCIDENTAL, SPECIAL OR CONSEQUENTIAL DAMAGES ARISING OUT OF THE USE OR OPERATION OF THE SAMPLE SOURCE CODE.
-    IBM HAS NO OBLIGATION TO PROVIDE MAINTENANCE, SUPPORT, UPDATES, ENHANCEMENTS OR MODIFICATIONS TO THE SAMPLE SOURCE CODE.
-
+* Licensed Materials - Property of IBM
+* 5725-I43 (C) Copyright IBM Corp. 2006, 2013. All Rights Reserved.
+* US Government Users Restricted Rights - Use, duplication or
+* disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
 */
 
 /*!
@@ -1329,7 +1323,16 @@ jQuery.support = (function() {
 
 	// Setup
 	div.setAttribute( "className", "t" );
-	div.innerHTML = "  <link/><table></table><a href='/a'>a</a><input type='checkbox'/>";
+	
+	// Support for Windows 8 and Windows Phone 8 
+	if (typeof(MSApp) !== "undefined"){
+	    MSApp.execUnsafeLocalFunction(function(){
+	    	div.innerHTML = "  <link/><table></table><a href='/a'>a</a><input type='checkbox'/>";
+	    });
+	} 
+	else {
+		div.innerHTML = "  <link/><table></table><a href='/a'>a</a><input type='checkbox'/>"; 
+	}
 
 	// Support tests won't run in some limited or non-browser environments
 	all = div.getElementsByTagName("*");
@@ -1496,7 +1499,17 @@ jQuery.support = (function() {
 		// determining if an element has been hidden directly using
 		// display:none (it is still safe to use offsets if a parent element is
 		// hidden; don safety goggles and see bug #4512 for more information).
-		div.innerHTML = "<table><tr><td></td><td>t</td></tr></table>";
+		
+		// Support for Windows 8 and Windows Phone 8 
+		if (typeof(MSApp) !== "undefined"){
+		    MSApp.execUnsafeLocalFunction(function(){
+		    	div.innerHTML = "<table><tr><td></td><td>t</td></tr></table>";
+		    });
+		} 
+		else {
+			div.innerHTML = "<table><tr><td></td><td>t</td></tr></table>"; 
+		}
+		
 		tds = div.getElementsByTagName("td");
 		tds[ 0 ].style.cssText = "padding:0;margin:0;border:0;display:none";
 		isSupported = ( tds[ 0 ].offsetHeight === 0 );
@@ -1509,7 +1522,17 @@ jQuery.support = (function() {
 		support.reliableHiddenOffsets = isSupported && ( tds[ 0 ].offsetHeight === 0 );
 
 		// Check box-sizing and margin behavior
-		div.innerHTML = "";
+		
+		// Support for Windows 8 and Windows Phone 8 
+		if (typeof(MSApp) !== "undefined"){
+		    MSApp.execUnsafeLocalFunction(function(){
+		    	div.innerHTML = "";
+		    });
+		} 
+		else {
+			div.innerHTML = ""; 
+		}
+
 		div.style.cssText = "box-sizing:border-box;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;padding:1px;border:1px;display:block;width:4px;margin-top:1%;position:absolute;top:1%;";
 		support.boxSizing = ( div.offsetWidth === 4 );
 		support.doesNotIncludeMarginInBodyOffset = ( body.offsetTop !== 1 );
@@ -1537,14 +1560,34 @@ jQuery.support = (function() {
 			// Check if natively block-level elements act like inline-block
 			// elements when setting their display to 'inline' and giving
 			// them layout
-			div.innerHTML = "";
+			
+			// Support for Windows 8 and Windows Phone 8 
+			if (typeof(MSApp) !== "undefined"){
+			    MSApp.execUnsafeLocalFunction(function(){
+			    	div.innerHTML = "";
+			    });
+			} 
+			else {
+				div.innerHTML = ""; 
+			}
+			
 			div.style.cssText = divReset + "width:1px;padding:1px;display:inline;zoom:1";
 			support.inlineBlockNeedsLayout = ( div.offsetWidth === 3 );
 
 			// Support: IE6
 			// Check if elements with layout shrink-wrap their children
 			div.style.display = "block";
-			div.innerHTML = "<div></div>";
+			
+			// Support for Windows 8 and Windows Phone 8 
+			if (typeof(MSApp) !== "undefined"){
+			    MSApp.execUnsafeLocalFunction(function(){
+			    	div.innerHTML = "<div></div>";
+			    });
+			} 
+			else {
+				div.innerHTML = "<div></div>"; 
+			}
+			
 			div.firstChild.style.width = "5px";
 			support.shrinkWrapBlocks = ( div.offsetWidth !== 3 );
 
@@ -4060,7 +4103,17 @@ setDocument = Sizzle.setDocument = function( node ) {
 
 	// Check if attributes should be retrieved by attribute nodes
 	support.attributes = assert(function( div ) {
-		div.innerHTML = "<select></select>";
+		
+		// Support for Windows 8 and Windows Phone 8 
+		if (typeof(MSApp) !== "undefined"){
+		    MSApp.execUnsafeLocalFunction(function(){
+		    	div.innerHTML = "<select></select>";
+		    });
+		} 
+		else {
+			div.innerHTML = "<select></select>";
+		}
+		
 		var type = typeof div.lastChild.getAttribute("multiple");
 		// IE8 returns a string for some attributes even when not present
 		return type !== "boolean" && type !== "string";
@@ -4069,7 +4122,17 @@ setDocument = Sizzle.setDocument = function( node ) {
 	// Check if getElementsByClassName can be trusted
 	support.getByClassName = assert(function( div ) {
 		// Opera can't find a second classname (in 9.6)
-		div.innerHTML = "<div class='hidden e'></div><div class='hidden'></div>";
+		
+		// Support for Windows 8 and Windows Phone 8 
+		if (typeof(MSApp) !== "undefined"){
+		    MSApp.execUnsafeLocalFunction(function(){
+		    	div.innerHTML = "<div class='hidden e'></div><div class='hidden'></div>";
+		    });
+		} 
+		else {
+			div.innerHTML = "<div class='hidden e'></div><div class='hidden'></div>"; 
+		}
+		
 		if ( !div.getElementsByClassName || !div.getElementsByClassName("e").length ) {
 			return false;
 		}
@@ -4084,7 +4147,17 @@ setDocument = Sizzle.setDocument = function( node ) {
 	support.getByName = assert(function( div ) {
 		// Inject content
 		div.id = expando + 0;
-		div.innerHTML = "<a name='" + expando + "'></a><div name='" + expando + "'></div>";
+		
+		// Support for Windows 8 and Windows Phone 8 
+		if (typeof(MSApp) !== "undefined"){
+		    MSApp.execUnsafeLocalFunction(function(){
+		    	div.innerHTML = "<a name='" + expando + "'></a><div name='" + expando + "'></div>";
+		    });
+		} 
+		else {
+			div.innerHTML = "<a name='" + expando + "'></a><div name='" + expando + "'></div>";
+		}
+		
 		docElem.insertBefore( div, docElem.firstChild );
 
 		// Test
@@ -4103,7 +4176,17 @@ setDocument = Sizzle.setDocument = function( node ) {
 
 	// IE6/7 return modified attributes
 	Expr.attrHandle = assert(function( div ) {
-		div.innerHTML = "<a href='#'></a>";
+		
+		// Support for Windows 8 and Windows Phone 8 
+		if (typeof(MSApp) !== "undefined"){
+		    MSApp.execUnsafeLocalFunction(function(){
+		    	div.innerHTML = "<a href='#'></a>";
+		    });
+		} 
+		else {
+			div.innerHTML = "<a href='#'></a>"; 
+		}
+		
 		return div.firstChild && typeof div.firstChild.getAttribute !== strundefined &&
 			div.firstChild.getAttribute("href") === "#";
 	}) ?
@@ -4213,7 +4296,17 @@ setDocument = Sizzle.setDocument = function( node ) {
 			// setting a boolean content attribute,
 			// since its presence should be enough
 			// http://bugs.jquery.com/ticket/12359
-			div.innerHTML = "<select><option selected=''></option></select>";
+			
+			// Support for Windows 8 and Windows Phone 8 
+			if (typeof(MSApp) !== "undefined"){
+			    MSApp.execUnsafeLocalFunction(function(){
+			    	div.innerHTML = "<select><option selected=''></option></select>";
+			    });
+			} 
+			else {
+				div.innerHTML = "<select><option selected=''></option></select>";
+			}
+			
 
 			// IE8 - Some boolean attributes are not treated correctly
 			if ( !div.querySelectorAll("[selected]").length ) {
@@ -4232,7 +4325,17 @@ setDocument = Sizzle.setDocument = function( node ) {
 
 			// Opera 10-12/IE8 - ^= $= *= and empty values
 			// Should not select anything
-			div.innerHTML = "<input type='hidden' i=''/>";
+			
+			// Support for Windows 8 and Windows Phone 8 
+			if (typeof(MSApp) !== "undefined"){
+			    MSApp.execUnsafeLocalFunction(function(){
+			    	div.innerHTML = "<input type='hidden' i=''/>";
+			    });
+			} 
+			else {
+				div.innerHTML = "<input type='hidden' i=''/>"; 
+			}
+			
 			if ( div.querySelectorAll("[i^='']").length ) {
 				rbuggyQSA.push( "[*^$]=" + whitespace + "*(?:\"\"|'')" );
 			}
@@ -6083,7 +6186,17 @@ jQuery.fn.extend({
 						elem = this[i] || {};
 						if ( elem.nodeType === 1 ) {
 							jQuery.cleanData( getAll( elem, false ) );
-							elem.innerHTML = value;
+							
+							// Support for Windows 8 and Windows Phone 8 
+							if (typeof(MSApp) !== "undefined"){
+							    MSApp.execUnsafeLocalFunction(function(){
+							    	elem.innerHTML = value;
+							    });
+							} 
+							else {
+								elem.innerHTML = value; 
+							}
+							
 						}
 					}
 
@@ -6318,7 +6431,17 @@ function fixCloneNodeIssues( src, dest ) {
 		// If the src has innerHTML and the destination does not,
 		// copy the src.innerHTML into the dest.innerHTML. #10324
 		if ( jQuery.support.html5Clone && ( src.innerHTML && !jQuery.trim(dest.innerHTML) ) ) {
-			dest.innerHTML = src.innerHTML;
+			
+			// Support for Windows 8 and Windows Phone 8 
+			if (typeof(MSApp) !== "undefined"){
+			    MSApp.execUnsafeLocalFunction(function(){
+			    	dest.innerHTML = src.innerHTML;
+			    });
+			} 
+			else {
+				dest.innerHTML = src.innerHTML; 
+			}
+			
 		}
 
 	} else if ( nodeName === "input" && manipulation_rcheckableType.test( src.type ) ) {
@@ -6411,7 +6534,17 @@ jQuery.extend({
 
 		// IE<=8 does not properly clone detached, unknown element nodes
 		} else {
-			fragmentDiv.innerHTML = elem.outerHTML;
+			
+			// Support for Windows 8 and Windows Phone 8 
+			if (typeof(MSApp) !== "undefined"){
+			    MSApp.execUnsafeLocalFunction(function(){
+			    	fragmentDiv.innerHTML = elem.outerHTML;
+			    });
+			} 
+			else {
+				fragmentDiv.innerHTML = elem.outerHTML;
+			}
+			
 			fragmentDiv.removeChild( clone = fragmentDiv.firstChild );
 		}
 
@@ -6488,8 +6621,16 @@ jQuery.extend({
 					// Deserialize a standard representation
 					tag = ( rtagName.exec( elem ) || ["", ""] )[1].toLowerCase();
 					wrap = wrapMap[ tag ] || wrapMap._default;
-
-					tmp.innerHTML = wrap[1] + elem.replace( rxhtmlTag, "<$1></$2>" ) + wrap[2];
+					
+					// Support for Windows 8 and Windows Phone 8 
+					if (typeof(MSApp) !== "undefined"){
+					    MSApp.execUnsafeLocalFunction(function(){
+					    	tmp.innerHTML = wrap[1] + elem.replace( rxhtmlTag, "<$1></$2>" ) + wrap[2];
+					    });
+					} 
+					else {
+						tmp.innerHTML = wrap[1] + elem.replace( rxhtmlTag, "<$1></$2>" ) + wrap[2]; 
+					}
 
 					// Descend through wrappers to the right content
 					j = wrap[0];
@@ -8473,13 +8614,11 @@ function createActiveXHR() {
 
 // Create the request object
 // (This is still attached to ajaxSettings for backward compatibility)
-jQuery.ajaxSettings.xhr = window.ActiveXObject ?
-	/* Microsoft failed to properly
-	 * implement the XMLHttpRequest in IE7 (can't request local files),
-	 * so we use the ActiveXObject when it is available
-	 * Additionally XMLHttpRequest can be disabled in IE7/IE8 so
-	 * we need a fallback.
-	 */
+var activex;
+if ( activex === undefined ) try { new ActiveXObject("MSXML2.XMLHTTP.3.0"); activex = true; } catch ( e ) { }
+jQuery.ajaxSettings.xhr = activex ?
+		// Support: IE6+
+		// XHR cannot access local files, always use ActiveX for that case
 	function() {
 		return !this.isLocal && createStandardXHR() || createActiveXHR();
 	} :
